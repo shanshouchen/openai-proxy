@@ -10,5 +10,12 @@ serve(async (request) => {
     }
 
     url.host = OPENAI_API_HOST;
+    request.respond({
+        headers: new Headers({
+            'Access-Control-Allow-Origin': '*', // 允许所有来源的请求
+            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE', // 允许的请求方法
+            'Access-Control-Allow-Headers': 'Content-Type', // 允许的请求头
+        }),
+    });
     return await fetch(url, request);
 });
